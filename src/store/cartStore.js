@@ -3,13 +3,20 @@ import { persist } from "zustand/middleware";
 
 const useCartStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       cart: [],
+
+      getTotalItems: () => {
+        return get().cart.reduce(
+          (total, item) => total + item.quantity,
+          0,
+        );
+      },
 
       addToCart: (product) =>
         set((state) => {
           const existingProduct = state.cart.find(
-            (item) => item.id === product.id
+            (item) => item.id === product.id,
           );
 
           if (existingProduct) {
@@ -20,7 +27,7 @@ const useCartStore = create(
                       ...item,
                       quantity: item.quantity + 1,
                     }
-                  : item
+                  : item,
               ),
             };
           }
@@ -45,22 +52,20 @@ const useCartStore = create(
                     ...item,
                     quantity: item.quantity - 1,
                   }
-                : item
+                : item,
             )
             .filter((item) => item.quantity > 0),
         })),
 
       removeFromCart: (productId) =>
         set((state) => ({
-          cart: state.cart.filter(
-            (item) => item.id !== productId
-          ),
+          cart: state.cart.filter((item) => item.id !== productId),
         })),
     }),
     {
       name: "momentum-cart",
-    }
-  )
+    },
+  ),
 );
 
 export default useCartStore;

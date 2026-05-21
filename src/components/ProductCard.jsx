@@ -4,33 +4,87 @@ function ProductCard({ product }) {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="group bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-900 hover:border-zinc-700 transition-all block"
+      className="group block"
     >
-      <div className="group bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-900 hover:border-zinc-700 transition-all">
-        <div className="h-80 bg-zinc-900 overflow-hidden">
-          <img
-            src={product.image_url}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
 
-        <div className="p-6">
-          <p className="text-zinc-500 text-sm mb-2 uppercase tracking-wider">
-            Momentum
-          </p>
+      {/* Product Visual */}
+      <div className="
+        aspect-4/5
+        rounded-[2.5rem]
+        overflow-hidden
+        bg-momentum-surface
+        mb-6
+        transition-all
+        duration-500
+        group-hover:-translate-y-2
+      ">
 
-          <h2 className="text-2xl font-semibold mb-3">{product.name}</h2>
+        <img
+          src={product.image_url}
+          alt={product.name}
+          className="
+            w-full
+            h-full
+            object-cover
+            transition-transform
+            duration-700
+            group-hover:scale-105
+          "
+        />
 
-          <div className="flex items-center justify-between">
-            <span className="text-xl font-bold">${product.price}</span>
-
-            <button className="bg-white text-black px-4 py-2 rounded-xl text-sm font-medium hover:bg-zinc-200 transition">
-              Add
-            </button>
-          </div>
-        </div>
       </div>
+
+      {/* Product Info */}
+      <div className="space-y-3">
+
+        <p className="
+          uppercase
+          tracking-[0.2em]
+          text-xs
+          text-momentum-wine
+        ">
+          Momentum Experience
+        </p>
+
+        <h2 className="
+          text-2xl
+          leading-tight
+          text-momentum-text
+        ">
+          {product.name}
+        </h2>
+
+        <div className="
+          flex
+          items-center
+          justify-between
+          pt-2
+        ">
+
+          <span className="
+            text-momentum-softText
+          ">
+            ${product.price}
+          </span>
+
+          <button className="
+            border
+            border-black/10
+            px-5
+            py-2
+            rounded-full
+            text-sm
+            hover:bg-black
+            hover:text-white
+            transition
+          ">
+            Explorar
+          </button>
+
+        </div>
+
+      </div>
+
     </Link>
   );
 }

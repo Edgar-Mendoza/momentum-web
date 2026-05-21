@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@config "../tailwind.config.mjs";
+
+@font-face {
+  font-family: "Noir";
+
+  src:
+    url("/src/assets/fonts/Noir_regular.otf")
+    format("opentype");
+}
+
+body {
+  background: #f5f1eb;
+  color: #111111;
+}

@@ -1,42 +1,30 @@
-import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
-import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
-import { getProducts } from "../services/products";
+
+import HeroSection from "../components/home/HeroSection";
+import PhilosophySection from "../components/home/PhilosophySection";
+import FeaturedProductSection from "../components/home/FeaturedProductSection";
+import ExperienceSection from "../components/home/ExperienceSection";
+import CollectionSection from "../components/home/CollectionSection";
+import ClosingSection from "../components/home/ClosingSection";
 
 function Home() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts().then(setProducts);
-  }, []);
-
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="min-h-screen bg-momentum-cream text-momentum-text">
+
       <Navbar />
 
-      <Hero />
+      <HeroSection />
 
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Featured Products
-          </h2>
+      <PhilosophySection />
 
-          <p className="text-zinc-500">
-            {products.length} products
-          </p>
-        </div>
+      <FeaturedProductSection />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
-          ))}
-        </div>
-      </main>
+      <ExperienceSection />
+
+      <CollectionSection />
+
+      <ClosingSection />
+
     </div>
   );
 }
